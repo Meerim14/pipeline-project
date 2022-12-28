@@ -1,13 +1,16 @@
 pipeline {
     agent any
     stages {
+        stage('build') {
+            steps {
+                echo 'Compiling the java source code'
+                sh 'javac Hello.java'
+            }
+        }
         stage('run') {
             steps {
-                echo 'Welcome to Jenkins World'
-                sh 'date'
-                sh 'python --version'
-                sh 'python pipeline.py'
-                sh 'pwd'
+                echo 'Running the compiled java code.'
+                sh 'java Hello'
             }
         }
     }
